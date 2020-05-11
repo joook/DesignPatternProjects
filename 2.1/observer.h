@@ -3,6 +3,10 @@
 
 #include <vector>
 
+float getMinVal(const std::vector<float> &DataList);
+float getMaxVal(const std::vector<float> &DataList);
+float getAvgVal(const std::vector<float> &DataList);
+
 class Subject;
 class Data;
 
@@ -29,6 +33,7 @@ public:
 
     void clearSubject() { m_Subject = nullptr; }
 
+private:
     Subject *m_Subject;
 };
 
@@ -51,10 +56,6 @@ private:
     float m_CurrentHumidity = 0.0;
     float m_CurrentPressure = 0.0;
 };
-
-float getMinVal(const std::vector<float> &DataList);
-float getMaxVal(const std::vector<float> &DataList);
-float getAvgVal(const std::vector<float> &DataList);
 
 class StatisticsDisplay : public WeatherObserver
 {

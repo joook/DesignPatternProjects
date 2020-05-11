@@ -28,7 +28,7 @@ void Subject::removeObserver(Observer *ObsoleteObserver)
 
 void Subject::notifyObservers(const Data &NewData) const
 {
-    for(auto Itr = m_ObserverList.begin(); Itr != m_ObserverList.cend(); Itr++)
+    for(auto Itr = m_ObserverList.cbegin(); Itr != m_ObserverList.cend(); Itr++)
     {
         (*Itr)->update(NewData);
     }
