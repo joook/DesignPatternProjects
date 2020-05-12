@@ -7,34 +7,13 @@ float getMinVal(const std::vector<float> &DataList);
 float getMaxVal(const std::vector<float> &DataList);
 float getAvgVal(const std::vector<float> &DataList);
 
-class Subject;
 class Data;
 
-class Observer //did not consider about copy control
+class Observer
 {
 public:
-    Observer()
-    : m_Subject(nullptr)
-    {
-    }
-
+    Observer() = default;
     virtual void update(const Data &NewData) = 0;
-
-    void setSubject(Subject *NewSubject)
-    {
-        if(NewSubject != nullptr)
-        {
-            m_Subject = NewSubject;
-        }
-        else
-        {
-        }
-    }
-
-    void clearSubject() { m_Subject = nullptr; }
-
-private:
-    Subject *m_Subject;
 };
 
 class WeatherObserver : public Observer

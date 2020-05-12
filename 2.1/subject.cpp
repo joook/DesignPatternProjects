@@ -7,7 +7,6 @@ void Subject::registerObserver(Observer *NewObserverPtr)
     if(NewObserverPtr != nullptr)
     {
         m_ObserverList.insert(NewObserverPtr);
-        NewObserverPtr->setSubject(this);
     }
     else
     {
@@ -19,7 +18,6 @@ void Subject::removeObserver(Observer *ObsoleteObserver)
     if(ObsoleteObserver != nullptr)
     {
         m_ObserverList.erase(ObsoleteObserver);
-        ObsoleteObserver->clearSubject();
     }
     else
     {
