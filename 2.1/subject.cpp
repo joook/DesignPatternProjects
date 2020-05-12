@@ -2,7 +2,7 @@
 #include "observer.h"
 #include "data.h"
 
-void Subject::registerObserver(Observer *NewObserverPtr)
+void Subject::registerObserver(Observer *const NewObserverPtr)
 {
     if(NewObserverPtr != nullptr)
     {
@@ -13,7 +13,7 @@ void Subject::registerObserver(Observer *NewObserverPtr)
     }
 }
 
-void Subject::removeObserver(Observer *ObsoleteObserver)
+void Subject::removeObserver(Observer *const ObsoleteObserver)
 {
     if(ObsoleteObserver != nullptr)
     {

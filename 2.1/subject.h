@@ -10,8 +10,8 @@ class Subject //did not consider about copy control
 {
 public:
     Subject() = default;
-    void registerObserver(Observer *NewObserver);
-    void removeObserver(Observer *ObsoleteObserver);
+    void registerObserver(Observer *const NewObserver);
+    void removeObserver(Observer *const ObsoleteObserver);
     void notifyObservers(const Data &NewData) const;
 
 private:

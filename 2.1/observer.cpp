@@ -60,7 +60,7 @@ void CurrentConditionDisplay::update(const Data &NewData)
 
 void CurrentConditionDisplay::display() const
 {
-    cout << "[CurrentConditionDisplay]" << endl;
+    cout << "-----CurrentConditionDisplay-----" << endl;
     cout << "Current temperature: " << m_CurrentTemperature << endl;
     cout << "Current humidity: " << m_CurrentHumidity << endl;
     cout << "Current pressure: " << m_CurrentPressure << endl;
@@ -79,7 +79,7 @@ void StatisticsDisplay::update(const Data &NewData)
 
 void StatisticsDisplay::display() const
 {
-    cout << "[StatisticsDisplay]" << endl;
+    cout << "-----StatisticsDisplay-----" << endl;
     cout << "Min temperature: " << getMinTemperature() << endl;
     cout << "Max temperature: " << getMaxTemperature() << endl;
     cout << "Average temperature: " << getAvgTemperature() << endl;
