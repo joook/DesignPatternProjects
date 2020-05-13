@@ -14,8 +14,15 @@ public:
     {
     }
 
-    virtual std::string getDescription() const = 0;
-    virtual double getPrice() const = 0;
+    virtual std::string getDescription() const
+    {
+        return m_BeveragePtr->getDescription();
+    }
+
+    virtual double getPrice() const
+    {
+        return m_BeveragePtr->getPrice();
+    }
 
 protected:
     std::shared_ptr<Beverage> m_BeveragePtr;
