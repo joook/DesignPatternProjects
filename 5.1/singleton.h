@@ -3,6 +3,8 @@
 
 #include <mutex>
 
+//destructor func will not be called,
+//resources will be freed after the process ends
 class Singleton
 {
 private:
