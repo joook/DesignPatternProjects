@@ -3,13 +3,14 @@
 
 using namespace std;
 
-mutex Singleton::m_Mutex;
 int Singleton::m_Id = 0;
 
 Singleton &Singleton::getInstance()
 {
-    //in my experiments, it works well without lock, but I'm not sure
-    //lock_guard<mutex> Lock(m_Mutex);
+    //if multiple threads attempt to initialize the same 
+    //static local variable concurrently,
+    //the initialization occurs exactly once,
+    //it is guaranteed since c++11
     static Singleton Instance;
     return Instance;
 }
