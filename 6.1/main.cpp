@@ -17,7 +17,6 @@ int main()
 
     Waiter1.setCommand(Order1);
     Waiter1.setCommand(Order2);
-    Waiter1.orderUp();
 
     return 0;
 }

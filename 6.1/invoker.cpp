@@ -5,19 +5,13 @@ using namespace std;
 
 void Waiter::setCommand(const shared_ptr<Command> &SomeCommand)
 {
-    m_CommandList.push_back(SomeCommand);
-}
-
-void Waiter::orderUp() const
-{
-    for(auto Itr = m_CommandList.begin(); Itr != m_CommandList.cend(); Itr++)
+    m_Command = SomeCommand;
+    if(m_Command)
     {
-        if(*Itr)
-        {
-            (*Itr)->execute();
-        }
-        else
-        {
-        }
+        m_Command->execute();
+    }
+    else
+    {
     }
 }
+
