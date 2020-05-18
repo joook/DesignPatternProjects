@@ -8,7 +8,7 @@ class Chef;
 class Command
 {
 public:
-    Command(const std::shared_ptr<Chef> &SomeChef)
+    Command(Chef * const SomeChef)
     : m_Chef(SomeChef)
     {
     }
@@ -16,13 +16,13 @@ public:
     virtual void execute() const = 0;
 
 public:
-    std::shared_ptr<Chef> m_Chef;
+    Chef *m_Chef;
 };
 
 class OrderCommand : public Command
 {
 public:
-    OrderCommand(const std::shared_ptr<Chef> &SomeChef)
+    OrderCommand(Chef * const SomeChef)
     : Command(SomeChef)
     {
     }
