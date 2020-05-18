@@ -2,6 +2,7 @@
 #define _COMMAND_H_
 
 #include <memory>
+#include <string>
 
 class Chef;
 
@@ -23,12 +24,16 @@ public:
 class OrderCommand : public Command
 {
 public:
-    OrderCommand(Chef * const SomeChef)
+    OrderCommand(Chef * const SomeChef, const std::string &Name)
     : Command(SomeChef)
+    , m_Name(Name)
     {
     }
 
     virtual void execute() const override;
+
+private:
+    std::string m_Name;
 };
 
 #endif

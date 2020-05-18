@@ -7,8 +7,8 @@ void OrderCommand::execute() const
 {
     if(m_Chef)
     {
-        m_Chef->prepareIngredients();
-        m_Chef->makeDishes();
+        m_Chef->prepareIngredients(m_Name);
+        m_Chef->makeDishes(m_Name);
     }
     else
     {

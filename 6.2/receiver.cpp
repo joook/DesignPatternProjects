@@ -1,41 +1,56 @@
 #include "receiver.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-void ItalianFoodChef::prepareIngredients() const
+void ItalianFoodChef::prepareIngredients(const string &Name) const
 {
-    cout << "[Italian Chef Preparing For You: Pasta]" << endl;
-    cout << "Get pasta." << endl;
-    cout << "Get sauce." << endl;
+    cout << "[Italian Chef]" << endl;
+    if(Name == "pasta")
+    {
+        cout << "Preparing pasta." << endl;
+    }
+    else
+    {
+        cout << "Preparing pizza." << endl;
+    }
 }
 
-void ItalianFoodChef::makeDishes() const
+void ItalianFoodChef::makeDishes(const string &Name) const
 {
-    cout << "Boil water." << endl;
-    cout << "Add pasta." << endl;
-    cout << "Drain the pasta." << endl;
-    cout << "Add sauce." << endl;
+    if(Name == "pasta")
+    {
+        cout << "Pasta done." << endl;
+    }
+    else
+    {
+        cout << "Pizza done." << endl;
+    }
 }
 
-void ChineseFoodChef::prepareIngredients() const
+void ChineseFoodChef::prepareIngredients(const string &Name) const
 {
-    cout << "[Chinese Chef Preparing For You: Fried Rice with Egg]" << endl;
-    cout << "Get cooked rice." << endl;
-    cout << "Get eggs." << endl;
-    cout << "Get oil." << endl;
+    cout << "[Chinese Chef]" << endl;
+    if(Name == "fried rice with egg")
+    {
+        cout << "Preparing fried rice with egg." << endl;
+    }
+    else
+    {
+        cout << "Preparing Kung Pao chicken." << endl;
+    }
 }
 
-void ChineseFoodChef::makeDishes() const
+void ChineseFoodChef::makeDishes(const string &Name) const
 {
-    cout << "Beat eggs together." << endl;
-    cout << "Heat oil." << endl;
-    cout << "Add rice." << endl;
-    cout << "Stir rice." << endl;
-    cout << "Move out rice." << endl;
-    cout << "Add oil and eggs." << endl;
-    cout << "Stir eggs." << endl;
-    cout << "Mix in with the rice." << endl;
-    cout << "Stir mixture." << endl;
+    if(Name == "fried rice with egg")
+    {
+        cout << "Fried rice with egg done." << endl;
+    }
+    else
+    {
+        cout << "Kung Pao chicken done." << endl;
+    }
 }
 
