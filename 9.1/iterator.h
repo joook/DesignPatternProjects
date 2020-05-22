@@ -17,9 +17,9 @@ public:
 class DinerMenuIterator : public Iterator
 {
 public:
-    DinerMenuIterator(const std::vector<MenuItem> &MenuItemList)
-    : m_MenuItemList(MenuItemList)
-    , m_Pos(m_MenuItemList.begin())
+    DinerMenuIterator(const std::shared_ptr<std::vector<MenuItem>> &MenuItemListPtr)
+    : m_MenuItemListPtr(MenuItemListPtr)
+    , m_Pos(m_MenuItemListPtr->begin())
     {
     }
 
@@ -27,16 +27,16 @@ public:
     virtual std::shared_ptr<MenuItem> next() override;
 
 private:
-    std::vector<MenuItem> m_MenuItemList;
+    std::shared_ptr<std::vector<MenuItem>> m_MenuItemListPtr;
     std::vector<MenuItem>::iterator m_Pos;
 };
 
 class BreakfastMenuIterator : public Iterator
 {
 public:
-    BreakfastMenuIterator(const std::list<MenuItem> &MenuItemList)
-    : m_MenuItemList(MenuItemList)
-    , m_Pos(m_MenuItemList.begin())
+    BreakfastMenuIterator(const std::shared_ptr<std::list<MenuItem>> &MenuItemListPtr)
+    : m_MenuItemListPtr(MenuItemListPtr)
+    , m_Pos(m_MenuItemListPtr->begin())
     {
     }
 
@@ -44,7 +44,7 @@ public:
     virtual std::shared_ptr<MenuItem> next() override;
 
 private:
-    std::list<MenuItem> m_MenuItemList;
+    std::shared_ptr<std::list<MenuItem>> m_MenuItemListPtr;
     std::list<MenuItem>::iterator m_Pos;
 };
 

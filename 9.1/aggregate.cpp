@@ -7,31 +7,21 @@ using namespace std;
 
 shared_ptr<Iterator> DinerMenu::createIterator()
 {
-    return shared_ptr<Iterator>(new DinerMenuIterator(m_MenuItemList));
+    return shared_ptr<Iterator>(new DinerMenuIterator(m_MenuItemListPtr));
 }
 
 void DinerMenu::add(const MenuItem &Item)
 {
-    m_MenuItemList.push_back(Item);
+    m_MenuItemListPtr->push_back(Item);
 }
 
 shared_ptr<Iterator> BreakfastMenu::createIterator()
 {
-    return shared_ptr<Iterator>(new BreakfastMenuIterator(m_MenuItemList));
+    return shared_ptr<Iterator>(new BreakfastMenuIterator(m_MenuItemListPtr));
 }
 
 void BreakfastMenu::add(const MenuItem &Item)
 {
-    m_MenuItemList.push_back(Item);
-}
-
-void printMenu(const std::shared_ptr<Menu> &MenuPtr)
-{
-    cout << "[Menu]" << endl;
-    shared_ptr<Iterator> ItrPtr = MenuPtr->createIterator();
-    while(ItrPtr->hasNext())
-    {
-        cout << ItrPtr->next()->getFoodName() << endl;
-    }
+    m_MenuItemListPtr->push_back(Item);
 }
 

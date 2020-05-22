@@ -5,7 +5,7 @@ using namespace std;
 
 bool DinerMenuIterator::hasNext()
 {
-    if(m_Pos != m_MenuItemList.cend())
+    if(m_Pos != m_MenuItemListPtr->cend())
     {
         return true;
     }
@@ -24,7 +24,7 @@ shared_ptr<MenuItem> DinerMenuIterator::next()
 
 bool BreakfastMenuIterator::hasNext()
 {
-    if(m_Pos != m_MenuItemList.cend())
+    if(m_Pos != m_MenuItemListPtr->cend())
     {
         return true;
     }

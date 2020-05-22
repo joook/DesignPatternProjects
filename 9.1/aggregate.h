@@ -17,25 +17,31 @@ public:
 class DinerMenu : public Menu
 {
 public:
+    DinerMenu()
+    : m_MenuItemListPtr(new std::vector<MenuItem>())
+    {
+    }
+
     virtual std::shared_ptr<Iterator> createIterator() override;
     void add(const MenuItem &Item);
 
 private:
-    std::vector<MenuItem> m_MenuItemList;
+    std::shared_ptr<std::vector<MenuItem>> m_MenuItemListPtr;
 };
-
-void printMenu(const std::shared_ptr<Menu> &MenuPtr);
 
 class BreakfastMenu : public Menu
 {
 public:
+    BreakfastMenu()
+    : m_MenuItemListPtr(new std::list<MenuItem>())
+    {
+    }
+
     virtual std::shared_ptr<Iterator> createIterator() override;
     void add(const MenuItem &Item);
 
 private:
-    std::list<MenuItem> m_MenuItemList;
+    std::shared_ptr<std::list<MenuItem>> m_MenuItemListPtr;
 };
-
-void printMenu(const std::shared_ptr<Menu> &MenuPtr);
 
 #endif

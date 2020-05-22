@@ -5,6 +5,16 @@
 
 using namespace std;
 
+void printMenu(const shared_ptr<Menu> &MenuPtr)
+{
+    cout << "[Menu]" << endl;
+    shared_ptr<Iterator> ItrPtr = MenuPtr->createIterator();
+    while(ItrPtr->hasNext())
+    {
+        cout << ItrPtr->next()->getFoodName() << endl;
+    }
+}
+
 int main()
 {
     DinerMenu Menu1;
