@@ -11,7 +11,7 @@ public:
     {
     }
 
-    std::string getFoodName()
+    std::string getFoodName() const
     {
         return m_FoodName;
     }
@@ -19,5 +19,7 @@ public:
 private:
     std::string m_FoodName;
 };
+
+bool operator<(const MenuItem &Item1, const MenuItem &Item2);
 
 #endif

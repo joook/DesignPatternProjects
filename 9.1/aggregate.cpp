@@ -22,6 +22,6 @@ shared_ptr<Iterator> BreakfastMenu::createIterator()
 
 void BreakfastMenu::add(const MenuItem &Item)
 {
-    m_MenuItemListPtr->push_back(Item);
+    m_MenuItemListPtr->insert(Item);
 }
 

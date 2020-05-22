@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <vector>
-#include <list>
+#include <set>
 
 class MenuItem;
 
@@ -34,7 +34,7 @@ private:
 class BreakfastMenuIterator : public Iterator
 {
 public:
-    BreakfastMenuIterator(const std::shared_ptr<std::list<MenuItem>> &MenuItemListPtr)
+    BreakfastMenuIterator(const std::shared_ptr<std::set<MenuItem>> &MenuItemListPtr)
     : m_MenuItemListPtr(MenuItemListPtr)
     , m_Pos(m_MenuItemListPtr->begin())
     {
@@ -44,8 +44,8 @@ public:
     virtual std::shared_ptr<MenuItem> next() override;
 
 private:
-    std::shared_ptr<std::list<MenuItem>> m_MenuItemListPtr;
-    std::list<MenuItem>::iterator m_Pos;
+    std::shared_ptr<std::set<MenuItem>> m_MenuItemListPtr;
+    std::set<MenuItem>::iterator m_Pos;
 };
 
 #endif

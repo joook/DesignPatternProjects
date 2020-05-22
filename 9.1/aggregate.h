@@ -2,7 +2,7 @@
 #define _AGGREGATE_H_
 
 #include <vector>
-#include <list>
+#include <set>
 #include <memory>
 
 class Iterator;
@@ -33,7 +33,7 @@ class BreakfastMenu : public Menu
 {
 public:
     BreakfastMenu()
-    : m_MenuItemListPtr(new std::list<MenuItem>())
+    : m_MenuItemListPtr(new std::set<MenuItem>())
     {
     }
 
@@ -41,7 +41,7 @@ public:
     void add(const MenuItem &Item);
 
 private:
-    std::shared_ptr<std::list<MenuItem>> m_MenuItemListPtr;
+    std::shared_ptr<std::set<MenuItem>> m_MenuItemListPtr;
 };
 
 #endif
