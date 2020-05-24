@@ -13,6 +13,8 @@ int main()
     shared_ptr<Component> EarPhones(new Product("iPhone EarPhones", 100.00));
 
     OuterBox->add(iPhone);
+    OuterBox->add(Charger);
+    OuterBox->remove(Charger);
     OuterBox->add(AccessoryBox);
     AccessoryBox->add(Charger);
     AccessoryBox->add(EarPhones);

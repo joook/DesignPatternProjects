@@ -7,18 +7,6 @@ using namespace std;
 
 int Component::m_SerialId = 0;
 
-bool isSameId(const std::shared_ptr<Component> &Ptr1, const std::shared_ptr<Component> &Ptr2)
-{
-    if(Ptr1->getId() == Ptr2->getId())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 void Box::add(const std::shared_ptr<Component> &ChildPtr)
 {
     m_ChildPtrListPtr->push_back(ChildPtr);
@@ -42,11 +30,23 @@ double Box::getTotalPrice() const
 
 void Product::add(const std::shared_ptr<Component> &ChildPtr)
 {
-    throw runtime_error("Leaf node do not has child.");
+    throw runtime_error("Leaf node does not have child.");
 }
 
 void Product::remove(const std::shared_ptr<Component> &ChildPtr)
 {
-    throw runtime_error("Leaf node do not has child.");
+    throw runtime_error("Leaf node does not have child.");
+}
+
+bool isSameId(const std::shared_ptr<Component> &Ptr1, const std::shared_ptr<Component> &Ptr2)
+{
+    if(Ptr1->getId() == Ptr2->getId())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
