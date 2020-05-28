@@ -1,5 +1,6 @@
 #include <iostream>
 #include <chrono>
+#include <thread>
 #include "proxy.h"
 #include "real_subject.h"
 
@@ -7,7 +8,7 @@ using namespace std;
 
 void runLoadThread(ImageProxy *ImageProxyPtr)
 {
-    cout << "Load thread id: " << std::this_thread::get_id() << endl;
+    //cout << "Load thread id: " << std::this_thread::get_id() << endl;
 
     ImageProxyPtr->m_IsLoading = true;
 

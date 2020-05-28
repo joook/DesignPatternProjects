@@ -2,14 +2,14 @@
 #include "real_subject.h"
 #include "proxy.h"
 #include <iostream>
-#include <thread>
+#include <thread>  //add -pthread if you use gcc/g++ to compile it
 #include <chrono>
 
 using namespace std;
 
 int main()
 {
-    cout << "Main thread id: " << std::this_thread::get_id() << endl;
+    //cout << "Main thread id: " << std::this_thread::get_id() << endl;
 
     ImageProxy Image1("./image_1.txt", "Dog Image");
     ImageProxy Image2("./image_2.txt", "Cat Image");

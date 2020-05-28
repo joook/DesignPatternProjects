@@ -4,7 +4,6 @@
 #include "subject.h"
 #include <memory>
 #include <string>
-#include <thread>
 #include <atomic>
 
 class RealImage;
@@ -31,8 +30,7 @@ private:
     std::shared_ptr<RealImage> m_RealImagePtr;
     std::string m_ImagePath;
     std::string m_ImageName;
-    //std::atomic<bool> m_IsLoading;
-    bool m_IsLoading;
+    std::atomic<bool> m_IsLoading;
 };
 
 #endif
