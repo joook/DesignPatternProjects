@@ -15,6 +15,7 @@ friend void runLoadThread(ImageProxy *ImageProxyPtr);
 public:
     ImageProxy(const std::string &ImagePath, const std::string &ImageName)
     : Image()
+    , m_RealImagePtr(nullptr)
     , m_ImagePath(ImagePath)
     , m_ImageName(ImageName)
     , m_IsLoading(false)
