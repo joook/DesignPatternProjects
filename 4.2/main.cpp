@@ -1,7 +1,7 @@
 #include <iostream>
-#include "pizza.h"
+#include "product.h"
 #include "factory.h"
-#include "pizza_store.h"
+#include "store.h"
 
 using namespace std;
 
