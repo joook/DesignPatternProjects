@@ -1,6 +1,5 @@
-#include "duck.h"
-#include "fly_behavior.h"
-#include "quack_behavior.h"
+#include "context.h"
+#include "concrete_strategy.h"
 #include <iostream>
 
 using namespace std;
@@ -20,14 +19,14 @@ void Duck::swim() const
     cout << "I'm swimming..." << endl;
 }
 
-GreenHeadDuck::GreenHeadDuck()
+RedHeadDuck::RedHeadDuck()
 : Duck(make_shared<FlyWithWings>(), make_shared<Quack>())
 {
 }
 
-void GreenHeadDuck::display() const
+void RedHeadDuck::display() const
 {
-    cout << "I'm a real GreenHeadDuck." << endl;
+    cout << "I'm a real RedHeadDuck." << endl;
 }
 
 RubberDuck::RubberDuck()

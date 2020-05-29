@@ -1,7 +1,17 @@
-#include "quack_behavior.h"
+#include "concrete_strategy.h"
 #include <iostream>
 
 using namespace std;
+
+void FlyWithWings::fly() const
+{
+    cout << "I'm flying!" << endl;
+}
+
+void FlyNoWay::fly() const
+{
+    cout << "I cannot fly." << endl;
+}
 
 void Quack::quack() const
 {
@@ -17,3 +27,4 @@ void MuteQuack::quack() const
 {
     cout << "I cannot quack..." << endl;
 }
+

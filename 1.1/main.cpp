@@ -1,12 +1,12 @@
-#include "duck.h"
-#include "fly_behavior.h"
-#include "quack_behavior.h"
+#include "context.h"
+#include "strategy.h"
+#include "concrete_strategy.h"
 
 using namespace std;
 
 int main()
 {
-    const GreenHeadDuck Duck1;
+    const RedHeadDuck Duck1;
     const RubberDuck Duck2;
 
     Duck1.display();

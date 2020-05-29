@@ -1,10 +1,18 @@
-#ifndef _QUACK_BEHAVIOR_H_
-#define _QUACK_BEHAVIOR_H_
+#ifndef _CONCRETE_STRATEGY_H_
+#define _CONCRETE_STRATEGY_H_
 
-class QuackBehavior
+#include "strategy.h"
+
+class FlyWithWings : public FlyBehavior
 {
 public:
-    virtual void quack() const = 0;
+    virtual void fly() const override;
+};
+
+class FlyNoWay : public FlyBehavior
+{
+public:
+    virtual void fly() const override;
 };
 
 class Quack : public QuackBehavior

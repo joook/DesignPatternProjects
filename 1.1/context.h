@@ -1,5 +1,5 @@
-#ifndef _DUCK_H_
-#define _DUCK_H_
+#ifndef _CONTEXT_H_
+#define _CONTEXT_H_
 
 #include <memory>
 
@@ -36,10 +36,10 @@ private:
     std::shared_ptr<QuackBehavior> m_QuackBehaviorPtr;
 };
 
-class GreenHeadDuck : public Duck
+class RedHeadDuck : public Duck
 {
 public:
-    GreenHeadDuck();
+    RedHeadDuck();
     virtual void display() const override;
 };
 
