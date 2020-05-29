@@ -1,5 +1,5 @@
-#ifndef _PIZZA_H_
-#define _PIZZA_H_
+#ifndef _PRODUCT_H_
+#define _PRODUCT_H_
 
 #include <string>
 

@@ -1,4 +1,4 @@
-#include "pizza.h"
+#include "product.h"
 #include "factory.h"
 
 using namespace std;

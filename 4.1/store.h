@@ -1,5 +1,5 @@
-#ifndef _PIZZA_STORE_H_
-#define _PIZZA_STORE_H_
+#ifndef _STORE_H_
+#define _STORE_H_
 
 #include <string>
 #include <memory>
