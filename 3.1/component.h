@@ -1,5 +1,5 @@
-#ifndef _BEVERAGE_H_
-#define _BEVERAGE_H_
+#ifndef _COMPONENT_H_
+#define _COMPONENT_H_
 
 #include <string>
 

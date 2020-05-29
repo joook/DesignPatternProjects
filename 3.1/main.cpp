@@ -1,6 +1,6 @@
 #include <iostream>
 #include <memory>
-#include "beverage.h"
+#include "component.h"
 #include "decorator.h"
 
 using namespace std;

@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <string>
-#include "beverage.h"
+#include "component.h"
 
 class CondimentDecorator : public Beverage
 {
