@@ -1,6 +1,6 @@
 #include <iostream>
-#include "pizza.h"
-#include "pizza_store.h"
+#include "product.h"
+#include "store.h"
 
 using namespace std;
 
@@ -9,6 +9,7 @@ void printPizzaTag(const shared_ptr<Pizza> &PizzaPtr)
     cout << PizzaPtr->getTag() << endl;
 }
 
+//simulate a customer ordering pizza from pizza stores
 int main()
 {
     CalifoniaPizzaStore Store1;

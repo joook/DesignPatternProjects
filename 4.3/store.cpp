@@ -1,5 +1,5 @@
-#include "pizza.h"
-#include "pizza_store.h"
+#include "product.h"
+#include "store.h"
 
 using namespace std;
 
