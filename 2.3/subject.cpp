@@ -34,16 +34,16 @@ void Observable::notifyObservers(const Data &NewData) const
 
 void RedChicken::layEggs(unsigned int EggNum)
 {
-    m_Observable->notifyObservers(Data(EggNum));
+    m_Observable->notifyObservers(Data("red chicken egg", EggNum));
 }
 
 void GreyChicken::layEggs(unsigned int EggNum)
 {
-    m_Observable->notifyObservers(Data(EggNum));
+    m_Observable->notifyObservers(Data("grey chicken egg", EggNum));
 }
 
 void BlackChicken::layEggs(unsigned int EggNum)
 {
-    m_Observable->notifyObservers(Data(EggNum));
+    m_Observable->notifyObservers(Data("black chicken egg", EggNum));
 }
 

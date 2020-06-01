@@ -9,6 +9,10 @@ using namespace std;
 
 void Farmer::update(const Data &NewData)
 {
+    cout << NewData.m_EggNum << " more ";
+    cout << NewData.m_EggType << (NewData.m_EggNum > 1 ? "s" : "");
+    cout <<  (NewData.m_EggNum == 5 ? "!" : ".") << endl;
+
     m_TotalEggNum += NewData.m_EggNum;
 
     //display the billboard after update
