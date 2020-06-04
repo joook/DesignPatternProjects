@@ -10,7 +10,6 @@ class RealImage : public Image
 {
 public:
     RealImage(const std::string &FileName);
-    virtual ~RealImage() override = default;
 
 public:
     virtual void paint() override;

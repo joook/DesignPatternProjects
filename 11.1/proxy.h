@@ -22,8 +22,6 @@ public:
     {
     }
 
-    virtual ~ImageProxy() override = default;
-
 public:
     virtual void paint() override;
 
