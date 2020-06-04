@@ -4,6 +4,9 @@
 class Chef
 {
 public:
+    virtual ~Chef() = default;
+
+public:
     virtual void prepareIngredients() const = 0;
     virtual void makeDishes() const = 0;
 };
