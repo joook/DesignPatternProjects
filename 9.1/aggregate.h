@@ -11,6 +11,9 @@ class MenuItem;
 class Menu
 {
 public:
+    virtual ~Menu() = default;
+
+public:
     virtual std::shared_ptr<Iterator> createIterator() = 0;
 };
 
@@ -22,6 +25,7 @@ public:
     {
     }
 
+public:
     virtual std::shared_ptr<Iterator> createIterator() override;
     void add(const MenuItem &Item);
 
@@ -37,6 +41,7 @@ public:
     {
     }
 
+public:
     virtual std::shared_ptr<Iterator> createIterator() override;
     void add(const MenuItem &Item);
 

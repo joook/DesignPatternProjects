@@ -10,6 +10,9 @@ class MenuItem;
 class Iterator
 {
 public:
+    virtual ~Iterator() = default;
+
+public:
     virtual bool hasNext() = 0;
     virtual std::shared_ptr<MenuItem> next() = 0;
 };
@@ -23,6 +26,7 @@ public:
     {
     }
 
+public:
     virtual bool hasNext() override;
     virtual std::shared_ptr<MenuItem> next() override;
 
@@ -40,6 +44,7 @@ public:
     {
     }
 
+public:
     virtual bool hasNext() override;
     virtual std::shared_ptr<MenuItem> next() override;
 
