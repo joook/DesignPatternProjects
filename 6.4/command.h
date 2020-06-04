@@ -12,6 +12,9 @@ public:
     {
     }
 
+    virtual ~Command() = default;
+
+public:
     virtual void execute() const = 0;
     virtual void undo() const = 0;
 
@@ -27,6 +30,7 @@ public:
     {
     }
 
+public:
     virtual void execute() const override;
     virtual void undo() const override;
 };
