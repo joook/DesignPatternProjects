@@ -4,6 +4,9 @@
 class Chicken
 {
 public:
+    virtual ~Chicken() = default;
+
+public:
     virtual void fly() = 0;
     virtual void cluck() = 0;
 };

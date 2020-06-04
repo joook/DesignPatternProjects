@@ -4,6 +4,9 @@
 class Duck
 {
 public:
+    virtual ~Duck() = default;
+
+public:
     virtual void fly() = 0;
     virtual void quack() = 0;
 };
