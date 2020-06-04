@@ -15,8 +15,6 @@ public:
     {
     }
 
-    virtual ~BlogOwnerProxy() override = default;
-
 public:
     virtual void read() override;
     virtual void write() override;
@@ -33,8 +31,6 @@ public:
     , m_RealBlogPtr(RealBlogPtr)
     {
     }
-
-    virtual ~BlogGuestProxy() override = default;
 
 public:
     virtual void read() override;

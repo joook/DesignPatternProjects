@@ -6,10 +6,6 @@
 class RealBlog : public Blog
 {
 public:
-    RealBlog() = default;
-    virtual ~RealBlog() override = default;
-
-public:
     virtual void read() override;
     virtual void write() override;
 };
