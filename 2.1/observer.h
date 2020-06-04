@@ -23,7 +23,6 @@ class WeatherObserver : public Observer
 {
 public:
     WeatherObserver() = default;
-    virtual ~WeatherObserver() = default;
 
 public:
     virtual void display() const = 0;
@@ -33,7 +32,6 @@ class CurrentConditionDisplay : public WeatherObserver
 {
 public:
     CurrentConditionDisplay() = default;
-    virtual ~CurrentConditionDisplay() = default;
 
 public:
     virtual void update(const Data &NewData) override;
@@ -49,7 +47,6 @@ class StatisticsDisplay : public WeatherObserver
 {
 public:
     StatisticsDisplay() = default;
-    virtual ~StatisticsDisplay() = default;
 
 public:
     virtual void update(const Data &NewData) override;
