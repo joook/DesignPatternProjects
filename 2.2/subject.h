@@ -27,7 +27,6 @@ class WeatherSubject : public Subject
 {
 public:
     WeatherSubject() = default;
-    virtual ~WeatherSubject() = default;
 
 public:
     virtual Data getData() const override { return m_Data; }
