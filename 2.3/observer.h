@@ -9,6 +9,9 @@ class Observer
 {
 public:
     Observer() = default;
+    virtual ~Observer() = default;
+
+public:
     virtual void update(const Data &NewData) = 0;
 };
 
@@ -16,7 +19,6 @@ class Farmer : public Observer
 {
 public:
     Farmer() = default;
-    virtual ~Farmer() = default;
 
 public:
     virtual void update(const Data &NewData) override;

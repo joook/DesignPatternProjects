@@ -22,7 +22,6 @@ class Observable : public Subject //did not consider about copy control
 {
 public:
     Observable() = default;
-    virtual ~Observable() = default;
 
 public:
     virtual void registerObserver(Observer *const NewObserver) override;
