@@ -10,6 +10,9 @@ class Subject //did not consider about copy control
 {
 public:
     Subject() = default;
+    virtual ~Subject() = default;
+
+public:
     void registerObserver(Observer *const NewObserver);
     void removeObserver(Observer *const ObsoleteObserver);
     void notifyObservers() const;
@@ -24,6 +27,9 @@ class WeatherSubject : public Subject
 {
 public:
     WeatherSubject() = default;
+    virtual ~WeatherSubject() = default;
+
+public:
     virtual Data getData() const override { return m_Data; }
     virtual void setData(const Data &NewData) override { m_Data = NewData; }
 

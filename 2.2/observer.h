@@ -14,6 +14,9 @@ class Observer
 {
 public:
     Observer() = default;
+    virtual ~Observer() = default;
+
+public:
     virtual void update(const Subject *const SubPtr) = 0;
 };
 
@@ -21,6 +24,9 @@ class WeatherObserver : public Observer
 {
 public:
     WeatherObserver() = default;
+    virtual ~WeatherObserver() = default;
+
+public:
     virtual void display() const = 0;
 };
 
@@ -28,6 +34,9 @@ class CurrentConditionDisplay : public WeatherObserver
 {
 public:
     CurrentConditionDisplay() = default;
+    virtual ~CurrentConditionDisplay() = default;
+
+public:
     virtual void update(const Subject *const SubPtr) override;
     virtual void display() const override;
 
@@ -41,6 +50,9 @@ class StatisticsDisplay : public WeatherObserver
 {
 public:
     StatisticsDisplay() = default;
+    virtual ~StatisticsDisplay() = default;
+
+public:
     virtual void update(const Subject *const SubPtr) override;
     virtual void display() const override;
 
