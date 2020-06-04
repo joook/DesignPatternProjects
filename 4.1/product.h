@@ -6,6 +6,9 @@
 class Pizza
 {
 public:
+    virtual ~Pizza() = default;
+
+public:
     virtual void prepare() = 0;
     virtual void bake() = 0;
     virtual void cut() = 0;

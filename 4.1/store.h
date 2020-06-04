@@ -15,6 +15,7 @@ public:
     {
     }
 
+public:
     std::shared_ptr<Pizza> orderPizza(const std::string &Name) const;
 
 private:
