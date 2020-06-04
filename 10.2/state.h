@@ -3,13 +3,15 @@
 
 class GumballMachine;
 
-class State
+class State //did not consider about copy control
 {
 public:
     State(GumballMachine * const MachinePtr)
     : m_MachinePtr(MachinePtr)
     {
     }
+
+    virtual ~State() = default;
 
 public:
     virtual void insertQuarter() const = 0;
