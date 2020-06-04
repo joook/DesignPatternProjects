@@ -11,6 +11,8 @@ class Subject
 public:
     Subject() = default;
     virtual ~Subject() = default;
+
+public:
     virtual void registerObserver(Observer *const NewObserver) = 0;
     virtual void removeObserver(Observer *const ObsoleteObserver) = 0;
     virtual void notifyObservers(const Data &NewData) const = 0;
@@ -21,6 +23,8 @@ class Observable : public Subject //did not consider about copy control
 public:
     Observable() = default;
     virtual ~Observable() = default;
+
+public:
     virtual void registerObserver(Observer *const NewObserver) override;
     virtual void removeObserver(Observer *const ObsoleteObserver) override;
     virtual void notifyObservers(const Data &NewData) const override;

@@ -16,6 +16,9 @@ class Farmer : public Observer
 {
 public:
     Farmer() = default;
+    virtual ~Farmer() = default;
+
+public:
     virtual void update(const Data &NewData) override;
     virtual void display() const;
 
