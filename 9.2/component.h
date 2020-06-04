@@ -15,7 +15,9 @@ public:
     {
         m_SerialId++;
     }
+    virtual ~Component() = default;
 
+public:
     virtual void add(const std::shared_ptr<Component> &ChildPtr) = 0;
     virtual void remove(const std::shared_ptr<Component> &ChildPtr) = 0;
 
@@ -41,6 +43,7 @@ public:
     {
     }
 
+public:
     virtual void add(const std::shared_ptr<Component> &ChildPtr) override;
     virtual void remove(const std::shared_ptr<Component> &ChildPtr) override;
 
@@ -58,6 +61,7 @@ public:
     {
     }
 
+public:
     virtual void add(const std::shared_ptr<Component> &ChildPtr) override;
     virtual void remove(const std::shared_ptr<Component> &ChildPtr) override;
 };
