@@ -9,6 +9,9 @@ class Pizza;
 class PizzaStore
 {
 public:
+    virtual ~PizzaStore() = default;
+
+public:
     std::shared_ptr<Pizza> orderPizza(const std::string &Name) const;
 
 protected:
