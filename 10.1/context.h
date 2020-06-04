@@ -17,7 +17,6 @@ public:
     void turnCrank();
     void fill(unsigned int Num);
 
-public:
     //for states to call
     void dispenseGumball();
 
