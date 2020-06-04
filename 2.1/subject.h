@@ -10,6 +10,9 @@ class Subject //did not consider about copy control
 {
 public:
     Subject() = default;
+    virtual ~Subject() = default;
+
+public:
     void registerObserver(Observer *const NewObserver);
     void removeObserver(Observer *const ObsoleteObserver);
     void notifyObservers(const Data &NewData) const;
@@ -22,7 +25,9 @@ class WeatherSubject : public Subject
 {
 public:
     WeatherSubject() = default;
+    virtual ~WeatherSubject() = default;
 
+public:
     void setMeasurements(float T, float H, float P); //will be called by WeatherStation
 };
 
