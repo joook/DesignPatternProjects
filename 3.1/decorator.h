@@ -14,8 +14,6 @@ public:
     {
     }
 
-    virtual ~CondimentDecorator() = default;
-
 public:
     virtual std::string getDescription() const
     {
@@ -39,8 +37,6 @@ public:
     {
     }
 
-    virtual ~NoCondimentAdded() = default;
-
 public:
     virtual std::string getDescription() const override
     {
@@ -60,8 +56,6 @@ public:
     : CondimentDecorator(BeveragePtr)
     {
     }
-
-    virtual ~MilkAdded() = default;
 
 public:
     virtual std::string getDescription() const override
@@ -83,8 +77,6 @@ public:
     {
     }
 
-    virtual ~MochaAdded() = default;
-
 public:
     virtual std::string getDescription() const override
     {
@@ -105,8 +97,6 @@ public:
     {
     }
 
-    virtual ~SoyAdded() = default;
-
 public:
     virtual std::string getDescription() const override
     {
@@ -126,8 +116,6 @@ public:
     : CondimentDecorator(BeveragePtr)
     {
     }
-
-    virtual ~WhipAdded() = default;
 
 public:
     virtual std::string getDescription() const override
