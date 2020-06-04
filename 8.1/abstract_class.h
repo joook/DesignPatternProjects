@@ -4,6 +4,9 @@
 class CaffeineBeverage
 {
 public:
+    virtual ~CaffeineBeverage() = default;
+
+public:
     void prepareRecipe()
     {
         boilWater();
