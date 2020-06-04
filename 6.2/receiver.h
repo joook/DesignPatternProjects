@@ -6,6 +6,9 @@
 class Chef
 {
 public:
+    virtual ~Chef() = default;
+
+public:
     virtual void prepareIngredients(const std::string &Name) const = 0;
     virtual void makeDishes(const std::string &Name) const = 0;
 };

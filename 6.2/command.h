@@ -15,9 +15,12 @@ public:
     {
     }
 
-    virtual void execute() const = 0;
+    virtual ~Command() = default;
 
 public:
+    virtual void execute() const = 0;
+
+protected:
     Chef *m_Chef;
 };
 
@@ -30,6 +33,7 @@ public:
     {
     }
 
+public:
     virtual void execute() const override;
 
 private:
