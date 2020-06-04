@@ -32,7 +32,6 @@ class RedHeadDuck : public Duck
 {
 public:
     RedHeadDuck();
-    virtual ~RedHeadDuck() = default;
 
 public:
     virtual void display() const override;
@@ -42,7 +41,6 @@ class RubberDuck : public Duck
 {
 public:
     RubberDuck();
-    virtual ~RubberDuck() = default;
 
 public:
     virtual void display() const override;

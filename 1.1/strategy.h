@@ -4,11 +4,17 @@
 class FlyBehavior
 {
 public:
+    virtual ~FlyBehavior() = default;
+
+public:
     virtual void fly() const = 0;
 };
 
 class QuackBehavior
 {
+public:
+    virtual ~QuackBehavior() = default;
+
 public:
     virtual void quack() const = 0;
 };
