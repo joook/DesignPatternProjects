@@ -17,15 +17,6 @@ private:
     std::string m_Description;
 };
 
-class HouseBlend : public Beverage
-{
-public:
-    HouseBlend() : Beverage("House Blend Coffee") {}
-
-public:
-    virtual double getPrice() const override { return 0.89; }
-};
-
 class DarkRoast : public Beverage
 {
 public:
