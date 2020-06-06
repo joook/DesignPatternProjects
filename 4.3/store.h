@@ -30,10 +30,4 @@ protected:
     virtual std::shared_ptr<Pizza> createPizza(const std::string &Name) const override;
 };
 
-class ChicagoPizzaStore : public PizzaStore
-{
-protected:
-    virtual std::shared_ptr<Pizza> createPizza(const std::string &Name) const override;
-};
-
 #endif
