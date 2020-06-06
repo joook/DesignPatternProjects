@@ -12,6 +12,7 @@ private:
     Singleton() { m_Id++; }
     Singleton(const Singleton &OriSingleton) = delete;
     Singleton & operator=(const Singleton &OriSingleton) = delete;
+
 public:
     static Singleton *getInstance();
     void printId();
