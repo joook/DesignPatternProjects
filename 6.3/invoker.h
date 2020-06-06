@@ -2,18 +2,20 @@
 #define _INVOKER_H_
 
 #include <memory>
-#include <queue>
+#include <stack>
 
 class Command;
 
-class Invoker
+class Editor
 {
 public:
     void setCommand(const std::shared_ptr<Command> &SomeCommand);
-    std::shared_ptr<Command> getCommand();
+    void undo();
+    void redo();
 
 private:
-    std::queue<std::shared_ptr<Command>> m_CommandQueue;
+    std::stack<std::shared_ptr<Command>> m_HistoryCommandStack;
+    std::stack<std::shared_ptr<Command>> m_RedoCommandStack;
 };
 
 #endif

@@ -1,25 +1,46 @@
 #include "invoker.h"
 #include "command.h"
-#include <iostream>
 
 using namespace std;
 
-void Invoker::setCommand(const shared_ptr<Command> &SomeCommand)
+void Editor::setCommand(const shared_ptr<Command> &SomeCommand)
 {
-    cout << "Boss published new task." << endl;
-    m_CommandQueue.push(SomeCommand);
-}
-
-std::shared_ptr<Command> Invoker::getCommand()
-{
-    shared_ptr<Command> Ptr;
-    if(!m_CommandQueue.empty())
+    if(SomeCommand)
     {
-        Ptr = m_CommandQueue.front();
-        m_CommandQueue.pop();
+        SomeCommand->execute();
+        m_HistoryCommandStack.push(SomeCommand);
     }
     else
     {
     }
-    return Ptr;
+}
+
+void Editor::undo()
+{
+    if(!m_HistoryCommandStack.empty())
+    {
+        shared_ptr<Command> SomeCommand = m_HistoryCommandStack.top();
+        SomeCommand->undo();
+        m_HistoryCommandStack.pop();
+
+        m_RedoCommandStack.push(SomeCommand);
+    }
+    else
+    {
+    }
+}
+
+void Editor::redo()
+{
+    if(!m_RedoCommandStack.empty())
+    {
+        shared_ptr<Command> SomeCommand = m_RedoCommandStack.top();
+        SomeCommand->execute();
+        m_RedoCommandStack.pop();
+
+        m_HistoryCommandStack.push(SomeCommand);
+    }
+    else
+    {
+    }
 }

@@ -3,7 +3,12 @@
 
 using namespace std;
 
-void Receiver::doTask(const int TaskId) const
+void Text::paste()
 {
-    cout << m_Name << " get task-" << TaskId << " done." << endl;
+    cout << "Text block pasted." << endl;
+}
+
+void Text::cut()
+{
+    cout << "Text block cut." << endl;
 }

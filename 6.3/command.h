@@ -1,44 +1,33 @@
 #ifndef _COMMAND_H_
 #define _COMMAND_H_
 
-#include <memory>
-#include <string>
-
-class Receiver;
+class Text;
 
 //did not consider about copy control
 class Command
 {
 public:
-    Command(Receiver * const SomeReceiver)
-    : m_Receiver(SomeReceiver)
-    {
-    }
-
     virtual ~Command() = default;
 
 public:
     virtual void execute() const = 0;
-
-protected:
-    Receiver *m_Receiver;
+    virtual void undo() const = 0;
 };
 
-class ConcreteCommand : public Command
+class PasteCommand : public Command
 {
 public:
-    ConcreteCommand(Receiver * const SomeReceiver)
-    : Command(SomeReceiver)
-    , m_Id(++m_IdCount)
+    PasteCommand(Text * const SomeText)
+    : m_Text(SomeText)
     {
     }
 
 public:
     virtual void execute() const override;
+    virtual void undo() const override;
 
 private:
-    static int m_IdCount;
-    int m_Id;
+    Text *m_Text;
 };
 
 #endif
