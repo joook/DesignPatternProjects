@@ -76,31 +76,4 @@ public:
     virtual void box() override { setTag("It's a NY pepperoni pizza."); }
 };
 
-class ChicagoStyleVeggiePizza : public Pizza
-{
-public:
-    virtual void prepare() override {}
-    virtual void bake() override {}
-    virtual void cut() override {}
-    virtual void box() override { setTag("It's a Chicago veggie pizza."); }
-};
-
-class ChicagoStyleCheesePizza : public Pizza
-{
-public:
-    virtual void prepare() override {}
-    virtual void bake() override {}
-    virtual void cut() override {}
-    virtual void box() override { setTag("It's a Chicago cheese pizza."); }
-};
-
-class ChicagoStylePepperoniPizza : public Pizza
-{
-public:
-    virtual void prepare() override {}
-    virtual void bake() override {}
-    virtual void cut() override {}
-    virtual void box() override { setTag("It's a Chicago pepperoni pizza."); }
-};
-
 #endif

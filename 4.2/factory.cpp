@@ -35,18 +35,3 @@ shared_ptr<Pizza> NYPizzaFactory::createPizza(const string &Name) const
     }
 }
 
-shared_ptr<Pizza> ChicagoPizzaFactory::createPizza(const string &Name) const
-{
-    if(Name == "veggie")
-    {
-        return make_shared<ChicagoStyleVeggiePizza>();
-    }
-    else if(Name == "cheese")
-    {
-        return make_shared<ChicagoStyleCheesePizza>();
-    }
-    else
-    {
-        return make_shared<ChicagoStylePepperoniPizza>();
-    }
-}
