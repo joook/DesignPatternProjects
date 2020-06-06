@@ -3,12 +3,24 @@
 
 using namespace std;
 
-void OrderCommand::execute() const
+void DinnerCommand::execute() const
 {
-    if(m_Chef)
+    if(m_ItalianFoodChef)
     {
-        m_Chef->prepareIngredients();
-        m_Chef->makeDishes();
+        m_ItalianFoodChef->prepareIngredients(m_DishName);
+        m_ItalianFoodChef->makeDishes(m_DishName);
+    }
+    else
+    {
+    }
+}
+
+void DrinkCommand::execute() const
+{
+    if(m_Bartender)
+    {
+        m_Bartender->prepareIngredients();
+        m_Bartender->makeCocktail();
     }
     else
     {

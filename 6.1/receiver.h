@@ -1,28 +1,26 @@
 #ifndef _RECEIVER_H_
 #define _RECEIVER_H_
 
-class Chef
+#include <string>
+
+class Receiver
 {
 public:
-    virtual ~Chef() = default;
-
-public:
-    virtual void prepareIngredients() const = 0;
-    virtual void makeDishes() const = 0;
+    virtual ~Receiver() = default;
 };
 
-class ItalianFoodChef : public Chef
+class ItalianFoodChef : public Receiver
 {
 public:
-    virtual void prepareIngredients() const override;
-    virtual void makeDishes() const override;
+    virtual void prepareIngredients(const std::string &DishName) const;
+    virtual void makeDishes(const std::string &DishName) const;
 };
 
-class ChineseFoodChef : public Chef
+class Bartender : public Receiver
 {
 public:
-    virtual void prepareIngredients() const override;
-    virtual void makeDishes() const override;
+    virtual void prepareIngredients() const;
+    virtual void makeCocktail() const;
 };
 
 #endif

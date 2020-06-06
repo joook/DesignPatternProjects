@@ -2,6 +2,7 @@
 #define _INVOKER_H_
 
 #include <memory>
+#include <queue>
 
 class Command;
 
@@ -9,9 +10,10 @@ class Waiter
 {
 public:
     void setCommand(const std::shared_ptr<Command> &SomeCommand);
+    void orderUp();
 
 private:
-    std::shared_ptr<Command> m_Command;
+    std::queue<std::shared_ptr<Command>> m_CommandQueue;
 };
 
 #endif
