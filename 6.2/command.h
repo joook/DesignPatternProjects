@@ -4,32 +4,23 @@
 #include <memory>
 #include <string>
 
-class Chef;
+class Worker;
 
-//did not consider about copy control
 class Command
 {
 public:
-    Command(Chef * const SomeChef)
-    : m_Chef(SomeChef)
-    {
-    }
-
     virtual ~Command() = default;
 
 public:
     virtual void execute() const = 0;
-
-protected:
-    Chef *m_Chef;
 };
 
-class OrderCommand : public Command
+class TaskCommand : public Command //did not consider about copy control
 {
 public:
-    OrderCommand(Chef * const SomeChef, const std::string &Name)
-    : Command(SomeChef)
-    , m_Name(Name)
+    TaskCommand(Worker * const SomeWorker)
+    : m_Worker(SomeWorker)
+    , m_TaskId(++m_IdCount)
     {
     }
 
@@ -37,7 +28,10 @@ public:
     virtual void execute() const override;
 
 private:
-    std::string m_Name;
+    Worker *m_Worker;
+    int m_TaskId;
+
+    static int m_IdCount;
 };
 
 #endif

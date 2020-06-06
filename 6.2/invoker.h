@@ -6,11 +6,11 @@
 
 class Command;
 
-class Waiter
+class TaskPublisher
 {
 public:
     void setCommand(const std::shared_ptr<Command> &SomeCommand);
-    void orderUp();
+    std::shared_ptr<Command> getCommand();
 
 private:
     std::queue<std::shared_ptr<Command>> m_CommandQueue;

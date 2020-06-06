@@ -1,25 +1,25 @@
 #include "invoker.h"
 #include "command.h"
+#include <iostream>
 
 using namespace std;
 
-void Waiter::setCommand(const shared_ptr<Command> &SomeCommand)
+void TaskPublisher::setCommand(const shared_ptr<Command> &SomeCommand)
 {
+    cout << "Boss published new task." << endl;
     m_CommandQueue.push(SomeCommand);
 }
 
-void Waiter::orderUp()
+std::shared_ptr<Command> TaskPublisher::getCommand()
 {
-    while(!m_CommandQueue.empty())
+    shared_ptr<Command> Ptr;
+    if(!m_CommandQueue.empty())
     {
-        if(m_CommandQueue.front())
-        {
-            (m_CommandQueue.front())->execute();
-            m_CommandQueue.pop();
-        }
-        else
-        {
-            m_CommandQueue.pop();
-        }
+        Ptr = m_CommandQueue.front();
+        m_CommandQueue.pop();
     }
+    else
+    {
+    }
+    return Ptr;
 }

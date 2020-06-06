@@ -3,28 +3,14 @@
 
 #include <string>
 
-class Chef
+class Worker
 {
 public:
-    virtual ~Chef() = default;
+    Worker(const std::string &Name) : m_Name(Name) {}
+    virtual void doTask(const int TaskId) const;
 
-public:
-    virtual void prepareIngredients(const std::string &Name) const = 0;
-    virtual void makeDishes(const std::string &Name) const = 0;
-};
-
-class ItalianFoodChef : public Chef
-{
-public:
-    virtual void prepareIngredients(const std::string &Name) const override;
-    virtual void makeDishes(const std::string &Name) const override;
-};
-
-class ChineseFoodChef : public Chef
-{
-public:
-    virtual void prepareIngredients(const std::string &Name) const override;
-    virtual void makeDishes(const std::string &Name) const override;
+private:
+    std::string m_Name;
 };
 
 #endif

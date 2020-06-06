@@ -3,12 +3,13 @@
 
 using namespace std;
 
-void OrderCommand::execute() const
+int TaskCommand::m_IdCount = 0;
+
+void TaskCommand::execute() const
 {
-    if(m_Chef)
+    if(m_Worker)
     {
-        m_Chef->prepareIngredients(m_Name);
-        m_Chef->makeDishes(m_Name);
+        m_Worker->doTask(m_TaskId);
     }
     else
     {
