@@ -26,7 +26,7 @@ action()</panel_attributes>
     </coordinates>
     <panel_attributes>Strategy
 --
-/action()/</panel_attributes>
+/realAction()/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -39,7 +39,7 @@ action()</panel_attributes>
     </coordinates>
     <panel_attributes>ConcreteStrategy1
 --
-action()</panel_attributes>
+realAction()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -52,7 +52,7 @@ action()</panel_attributes>
     </coordinates>
     <panel_attributes>ConcreteStrategy2
 --
-action()</panel_attributes>
+realAction()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
