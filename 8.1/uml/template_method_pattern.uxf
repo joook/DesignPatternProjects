@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>320</y>
+      <w>140</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>ConcreteClass
+--
+action3()
+action4()
+hook()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>200</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>80</y>
+      <w>140</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>AbstractClass
+--
+templateMethod()
+definedAction1()
+definedAction2()
+/action3()/
+/action4()/
+hook()</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
