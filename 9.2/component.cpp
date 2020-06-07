@@ -1,52 +1,50 @@
 #include <iostream>
 #include <stdexcept>
-#include <functional>
 #include "component.h"
 
 using namespace std;
 
-int Component::m_SerialId = 0;
-
-void Box::add(const std::shared_ptr<Component> &ChildPtr)
+void Box::add(Component* const ChildPtr)
 {
-    m_ChildPtrListPtr->push_back(ChildPtr);
+    m_ChildPtrList.push_back(ChildPtr);
 }
 
-void Box::remove(const std::shared_ptr<Component> &ChildPtr)
+void Box::remove(Component* const ChildPtr)
 {
-    m_ChildPtrListPtr->remove_if(bind(isSameId, placeholders::_1, ChildPtr));
+    m_ChildPtrList.remove(ChildPtr);
+}
+
+string Box::getComponentList() const
+{
+    string List = getName();
+    for(auto Itr = m_ChildPtrList.begin()
+    ; Itr != m_ChildPtrList.cend(); Itr++)
+    {
+        List += ", ";
+        List += (*Itr)->getComponentList();
+    }
+    return List;
 }
 
 double Box::getTotalPrice() const
 {
     double Price = getPrice();
-    for(auto Itr = m_ChildPtrListPtr->begin()
-    ; Itr != m_ChildPtrListPtr->cend(); Itr++)
+    for(auto Itr = m_ChildPtrList.begin()
+    ; Itr != m_ChildPtrList.cend(); Itr++)
     {
         Price += (*Itr)->getTotalPrice();
     }
     return Price;
 }
 
-void Product::add(const std::shared_ptr<Component> &ChildPtr)
+void Product::add(Component* const ChildPtr)
 {
     throw runtime_error("Leaf node does not have child.");
 }
 
-void Product::remove(const std::shared_ptr<Component> &ChildPtr)
+void Product::remove(Component* const ChildPtr)
 {
     throw runtime_error("Leaf node does not have child.");
 }
 
-bool isSameId(const std::shared_ptr<Component> &Ptr1, const std::shared_ptr<Component> &Ptr2)
-{
-    if(Ptr1->getId() == Ptr2->getId())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 

@@ -8,64 +8,60 @@
 class Component
 {
 public:
-    Component(const std::string &Name, double Price)
-    : m_Name(Name)
-    , m_Price(Price)
-    , m_Id(m_SerialId)
-    {
-        m_SerialId++;
-    }
     virtual ~Component() = default;
 
 public:
-    virtual void add(const std::shared_ptr<Component> &ChildPtr) = 0;
-    virtual void remove(const std::shared_ptr<Component> &ChildPtr) = 0;
-
-    std::string getName() const { return m_Name; }
-    double getPrice() const { return m_Price; }
-    virtual double getTotalPrice() const { return getPrice(); }
-    int getId() const { return m_Id; }
-
-private:
-    static int m_SerialId;
-
-    std::string m_Name;
-    double m_Price;
-    int m_Id;
+    virtual void add(Component* const ChildPtr) = 0;
+    virtual void remove(Component* const ChildPtr) = 0;
+    virtual std::string getComponentList() const = 0;
+    virtual double getTotalPrice() const = 0;
 };
 
-class Box : public Component
+class Box : public Component //did not consider about copy control
 {
 public:
     Box(double Price = 0.5)
-    : Component("Package Box", Price)
-    , m_ChildPtrListPtr(new std::list<std::shared_ptr<Component>>)
+    : m_Name("Package Box")
+    , m_Price(Price)
     {
     }
 
 public:
-    virtual void add(const std::shared_ptr<Component> &ChildPtr) override;
-    virtual void remove(const std::shared_ptr<Component> &ChildPtr) override;
-
+    virtual void add(Component* const ChildPtr) override;
+    virtual void remove(Component* const ChildPtr) override;
+    virtual std::string getComponentList() const override;
     virtual double getTotalPrice() const override;
 
+    std::string getName() const { return m_Name; }
+    double getPrice() const { return m_Price; }
+
 private:
-    std::shared_ptr<std::list<std::shared_ptr<Component>>> m_ChildPtrListPtr;
+    std::list<Component*> m_ChildPtrList;
+    std::string m_Name;
+    double m_Price;
 };
 
 class Product : public Component
 {
 public:
     Product(const std::string &Name, double Price)
-    : Component(Name, Price)
+    : m_Name(Name)
+    , m_Price(Price)
     {
     }
 
 public:
-    virtual void add(const std::shared_ptr<Component> &ChildPtr) override;
-    virtual void remove(const std::shared_ptr<Component> &ChildPtr) override;
-};
+    virtual void add(Component* const ChildPtr) override;
+    virtual void remove(Component* const ChildPtr) override;
+    virtual std::string getComponentList() const override { return getName(); }
+    virtual double getTotalPrice() const override { return getPrice(); }
 
-bool isSameId(const std::shared_ptr<Component> &Ptr1, const std::shared_ptr<Component> &Ptr2);
+    std::string getName() const { return m_Name; }
+    double getPrice() const { return m_Price; }
+
+private:
+    std::string m_Name;
+    double m_Price;
+};
 
 #endif
