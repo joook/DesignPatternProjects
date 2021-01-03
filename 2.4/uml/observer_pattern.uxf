@@ -7,15 +7,15 @@
     <coordinates>
       <x>0</x>
       <y>210</y>
-      <w>450</w>
+      <w>480</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>Subject
 --
--std::set&lt;std::function&lt;void(const Data&amp;)&gt;&gt; m_HandlerList;
+-std::map&lt;std::uint32_t, std::function&lt;void(const Data&amp;)&gt;&gt; m_HandlerList;
 --
-+void addHandler(const std::function&lt;void(const Data&amp;)&gt;&amp; func);
-+void removeHandler(const std::function&lt;void(const Data&amp;)&gt;&amp; func);
++std::uint32_t addHandler(const std::function&lt;void(const Data&amp;)&gt;&amp; func);
++void removeHandler(std::uint32_t id);
 +void notify(const Data&amp; data);</panel_attributes>
     <additional_attributes/>
   </element>
