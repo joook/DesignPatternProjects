@@ -57,19 +57,6 @@
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>560</x>
-      <y>210</y>
-      <w>240</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>Observer
---
-/+void handle(const Data&amp; data);/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>370</x>
@@ -79,17 +66,6 @@
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>80.0;10.0;10.0;100.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>550</x>
-      <y>110</y>
-      <w>100</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -103,17 +79,6 @@
 --
 +void handle(const Data&amp; data);</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>550</x>
-      <y>310</y>
-      <w>70</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -131,12 +96,23 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
-      <y>310</y>
-      <w>80</w>
-      <h>100</h>
+      <x>550</x>
+      <y>110</y>
+      <w>110</w>
+      <h>300</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;80.0</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;90.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>110</y>
+      <w>310</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;290.0;10.0;290.0;280.0</additional_attributes>
   </element>
 </diagram>

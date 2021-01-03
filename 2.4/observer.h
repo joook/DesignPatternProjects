@@ -5,33 +5,15 @@
 
 class Data;
 
-class Observer
-{
-public:
-    Observer() = default;
-    virtual ~Observer() = default;
-
-public:
-    virtual void handle(const Data &data) = 0;
-};
-
-class WeatherObserver : public Observer
-{
-public:
-    WeatherObserver() = default;
-
-public:
-    virtual void display() const = 0;
-};
-
-class CurrentConditionDisplay : public WeatherObserver
+class CurrentConditionDisplay
 {
 public:
     CurrentConditionDisplay() = default;
+    ~CurrentConditionDisplay() = default;
 
 public:
-    virtual void handle(const Data &data) override;
-    virtual void display() const override;
+    void handle(const Data &data);
+    void display() const;
 
 private:
     float m_CurrentTemperature = 0.0;
@@ -39,14 +21,15 @@ private:
     float m_CurrentPressure = 0.0;
 };
 
-class StatisticsDisplay : public WeatherObserver
+class StatisticsDisplay
 {
 public:
     StatisticsDisplay() = default;
+    ~StatisticsDisplay() = default;
 
 public:
-    virtual void handle(const Data &data) override;
-    virtual void display() const override;
+    void handle(const Data &data);
+    void display() const;
 
 private:
     float getMinTemperature() const { return getMinVal(m_TemperatureList); }
