@@ -8,21 +8,25 @@ void SoldOutState::onEvent(const std::shared_ptr<Event>& event) const
 {
     if (event)
     {
-        if (event->m_Id == INSERT_QUARTER)
+        if (event->m_Id == EventId::INSERT_QUARTER)
         {
-            std::cout << "Gumball sold out, can not insert." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": Gumball sold out, can not insert." << std::endl;
         }
-        else if (event->m_Id == EJECT_QUARTER)
+        else if (event->m_Id == EventId::EJECT_QUARTER)
         {
-            std::cout << "Gumball sold out, can not eject." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": Gumball sold out, can not eject." << std::endl;
         }
-        else if (event->m_Id == TURN_CRANK)
+        else if (event->m_Id == EventId::TURN_CRANK)
         {
-            std::cout << "Gumball sold out, can not turn crank." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": Gumball sold out, can not turn crank." << std::endl;
         }
-        else if (event->m_Id == FILL)
+        else if (event->m_Id == EventId::FILL)
         {
-            std::cout << "Gumball machine filled." << std::endl;
+            std::uint32_t* data = (std::uint32_t*)(event->m_Data);
+            m_Machine->doFill(*data);
+            std::cout << m_Machine->getMachineName() << ": Gumball machine filled with " << *data;
+            std::cout << ((*data > 1) ? " gumballs." : " gumball.") << std::endl;
+            
             m_Machine->switchToNoQuarterState();
         }
         else
@@ -47,22 +51,26 @@ void NoQuarterState::onEvent(const std::shared_ptr<Event>& event) const
 {
     if (event)
     {
-        if (event->m_Id == INSERT_QUARTER)
+        if (event->m_Id == EventId::INSERT_QUARTER)
         {
-            std::cout << "You inserted a quarter." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": You inserted a quarter." << std::endl;
+            
             m_Machine->switchToHasQuarterState();
         }
-        else if (event->m_Id == EJECT_QUARTER)
+        else if (event->m_Id == EventId::EJECT_QUARTER)
         {
-            std::cout << "No quarter inserted, can not eject." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": No quarter inserted, can not eject." << std::endl;
         }
-        else if (event->m_Id == TURN_CRANK)
+        else if (event->m_Id == EventId::TURN_CRANK)
         {
-            std::cout << "No quarter inserted, can not turn crank." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": No quarter inserted, can not turn crank." << std::endl;
         }
-        else if (event->m_Id == FILL)
+        else if (event->m_Id == EventId::FILL)
         {
-            std::cout << "Gumball machine filled." << std::endl;
+            std::uint32_t* data = (std::uint32_t*)(event->m_Data);
+            m_Machine->doFill(*data);
+            std::cout << m_Machine->getMachineName() << ": Gumball machine filled with " << *data;
+            std::cout << ((*data > 1) ? " gumballs." : " gumball.") << std::endl;
         }
         else
         {
@@ -86,19 +94,23 @@ void HasQuarterState::onEvent(const std::shared_ptr<Event>& event) const
 {
     if (event)
     {
-        if (event->m_Id == INSERT_QUARTER)
+        if (event->m_Id == EventId::INSERT_QUARTER)
         {
-            std::cout << "Quarter already inserted." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": Quarter already inserted." << std::endl;
         }
-        else if (event->m_Id == EJECT_QUARTER)
+        else if (event->m_Id == EventId::EJECT_QUARTER)
         {
-            std::cout << "Quarter ejected." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": Quarter ejected." << std::endl;
+            
             m_Machine->switchToNoQuarterState();
         }
-        else if (event->m_Id == TURN_CRANK)
+        else if (event->m_Id == EventId::TURN_CRANK)
         {
-            std::cout << "Crank turned." << std::endl;
+            std::cout << m_Machine->getMachineName() << ": Crank turned." << std::endl;
+            
             m_Machine->dispenseGumball();
+            std::cout << m_Machine->getMachineName() << ": A gumball rolled out!" << std::endl;
+            
             if(m_Machine->checkSoldOut() == true)
             {
                 m_Machine->switchToSoldOutState();
@@ -108,9 +120,12 @@ void HasQuarterState::onEvent(const std::shared_ptr<Event>& event) const
                 m_Machine->switchToNoQuarterState();
             }
         }
-        else if (event->m_Id == FILL)
+        else if (event->m_Id == EventId::FILL)
         {
-            std::cout << "Gumball machine filled." << std::endl;
+            std::uint32_t* data = (std::uint32_t*)(event->m_Data);
+            m_Machine->doFill(*data);
+            std::cout << m_Machine->getMachineName() << ": Gumball machine filled with " << *data;
+            std::cout << ((*data > 1) ? " gumballs." : " gumball.") << std::endl;
         }
         else
         {

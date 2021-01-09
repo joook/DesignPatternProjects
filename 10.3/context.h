@@ -2,24 +2,26 @@
 #define _CONTEXT_H_
 
 #include <memory>
+#include <string>
 
 class State;
 
 class GumballMachine
 {
 public:
-    GumballMachine();
+    GumballMachine(const std::string& name);
     ~GumballMachine() = default;
 
 public:
-    //for user to call
+    // for user to call
     void insertQuarter();
     void ejectQuarter();
     void turnCrank();
     void fill(std::uint32_t num);
 
-    //for states to call
+    // for states to call
     void dispenseGumball();
+    void doFill(std::uint32_t num);
 
     bool checkSoldOut() const
     {
@@ -29,8 +31,11 @@ public:
     void switchToSoldOutState();
     void switchToNoQuarterState();
     void switchToHasQuarterState();
+    
+    std::string getMachineName() { return m_MachineName; }
 
 private:
+    std::string m_MachineName;
     std::shared_ptr<State> m_SoldOutState;
     std::shared_ptr<State> m_NoQuarterState;
     std::shared_ptr<State> m_HasQuarterState;

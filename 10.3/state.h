@@ -6,11 +6,11 @@
 class GumballMachine;
 class Event;
 
-class State //did not consider about copy control
+class State // did not consider about copy control
 {
 public:
     State(GumballMachine* const machine)
-    : m_Machine(machine)
+        : m_Machine(machine)
     {
     }
 
@@ -29,7 +29,7 @@ class SoldOutState : public State
 {
 public:
     SoldOutState(GumballMachine* const machine)
-    : State(machine)
+        : State(machine)
     {
     }
 
@@ -43,7 +43,7 @@ class NoQuarterState : public State
 {
 public:
     NoQuarterState(GumballMachine* const machine)
-    : State(machine)
+        : State(machine)
     {
     }
 
@@ -57,7 +57,7 @@ class HasQuarterState : public State
 {
 public:
     HasQuarterState(GumballMachine* const machine)
-    : State(machine)
+        : State(machine)
     {
     }
 

@@ -1,9 +1,9 @@
 #ifndef _EVENT_H_
 #define _EVENT_H_
 
-#include <cstdint>
+#include <cstdint> // std::uint32_t
 
-enum EventId : std::uint32_t
+enum class EventId : std::uint32_t
 {
     INSERT_QUARTER = 0,
     EJECT_QUARTER = 1,
@@ -11,14 +11,15 @@ enum EventId : std::uint32_t
     FILL = 3,
 };
 
-class Event //did not consider about copy control
+class Event // did not consider about copy control
 {
 public:
-    Event(std::uint32_t id);
-    Event(std::uint32_t id, void* data);
+    Event(EventId id);
+    Event(EventId id, void* data);
+    ~Event() = default;
 
 public:
-    std::uint32_t m_Id;
+    EventId m_Id;
     void* m_Data;
 };
 
