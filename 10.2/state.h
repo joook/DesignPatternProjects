@@ -1,71 +1,96 @@
 #ifndef _STATE_H_
 #define _STATE_H_
 
-class GumballMachine;
+#include <memory>
+#include <string>
 
-class State //did not consider about copy control
+#include "common_types.h"
+
+class GumballMachine;
+class Event;
+
+class State // did not consider about copy control
 {
 public:
-    State(GumballMachine * const MachinePtr)
-    : m_MachinePtr(MachinePtr)
+    State(StateId id, const std::string& name, GumballMachine* const machine)
+        : m_Id(id)
+        , m_Name(name)
+        , m_Machine(machine)
     {
     }
 
     virtual ~State() = default;
 
-public:
-    virtual void insertQuarter() const = 0;
-    virtual void ejectQuarter() const = 0;
-    virtual void turnCrank() const = 0;
-    virtual void fill() const = 0;
+    virtual void onEnter() const = 0;
+    virtual bool isValidSwitch(StateId id) const = 0;
+    virtual void onExit() const = 0;
+    
+    virtual void onInsertQuarterEvent() const = 0;
+    virtual void onEjectQuarterEvent() const = 0;
+    virtual void onTurnCrankEvent() const = 0;
+    virtual void onFillEvent(std::uint32_t num) const = 0;
+    
+    GumballMachine* getContext() const { return m_Machine; }
+    std::string getStateName() const { return m_Name; }
 
-public:
-    GumballMachine * m_MachinePtr;
+private:
+    StateId m_Id;
+    std::string m_Name;
+    GumballMachine* m_Machine;
 };
 
 class SoldOutState : public State
 {
 public:
-    SoldOutState(GumballMachine * const MachinePtr)
-    : State(MachinePtr)
+    SoldOutState(GumballMachine* const machine)
+        : State(StateId::SOLD_OUT_STATE, "sold out", machine)
     {
     }
 
-public:
-    virtual void insertQuarter() const override;
-    virtual void ejectQuarter() const override;
-    virtual void turnCrank() const override;
-    virtual void fill() const override;
+    virtual void onEnter() const override;
+    virtual bool isValidSwitch(StateId id) const override;
+    virtual void onExit() const override;
+    
+    virtual void onInsertQuarterEvent() const override;
+    virtual void onEjectQuarterEvent() const override;
+    virtual void onTurnCrankEvent() const override;
+    virtual void onFillEvent(std::uint32_t num) const override;
 };
 
 class NoQuarterState : public State
 {
 public:
-    NoQuarterState(GumballMachine * const MachinePtr)
-    : State(MachinePtr)
+    NoQuarterState(GumballMachine* const machine)
+        : State(StateId::NO_QUARTER_STATE, "no quarter", machine)
     {
     }
 
-public:
-    virtual void insertQuarter() const override;
-    virtual void ejectQuarter() const override;
-    virtual void turnCrank() const override;
-    virtual void fill() const override;
+    virtual void onEnter() const override;
+    virtual bool isValidSwitch(StateId id) const override;
+    virtual void onExit() const override;
+    
+    virtual void onInsertQuarterEvent() const override;
+    virtual void onEjectQuarterEvent() const override;
+    virtual void onTurnCrankEvent() const override;
+    virtual void onFillEvent(std::uint32_t num) const override;
 };
 
 class HasQuarterState : public State
 {
 public:
-    HasQuarterState(GumballMachine * const MachinePtr)
-    : State(MachinePtr)
+    HasQuarterState(GumballMachine* const machine)
+        : State(StateId::HAS_QUARTER_STATE, "has quarter", machine)
     {
     }
 
-public:
-    virtual void insertQuarter() const override;
-    virtual void ejectQuarter() const override;
-    virtual void turnCrank() const override;
-    virtual void fill() const override;
+    virtual void onEnter() const override;
+    virtual bool isValidSwitch(StateId id) const override;
+    virtual void onExit() const override;
+    
+    virtual void onInsertQuarterEvent() const override;
+    virtual void onEjectQuarterEvent() const override;
+    virtual void onTurnCrankEvent() const override;
+    virtual void onFillEvent(std::uint32_t num) const override;
 };
 
 #endif

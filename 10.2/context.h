@@ -2,44 +2,49 @@
 #define _CONTEXT_H_
 
 #include <memory>
+#include <string>
+
+#include "common_types.h"
 
 class State;
 
 class GumballMachine
 {
 public:
-    GumballMachine();
+    GumballMachine(const std::string& name);
+    ~GumballMachine() = default;
 
 public:
-    //for user to call
+    // for user to call
     void insertQuarter();
     void ejectQuarter();
     void turnCrank();
-    void fill(unsigned int Num);
+    void fill(std::uint32_t num);
 
-    //for states to call
+    // for states to call
+    void notifyInsertQuarterFailed();
+    void notifyInsertQuarterDone();
+    void notifyEjectQuarterFailed();
+    void notifyEjectQuarterDone();
+    void notifyTurnCrankFailed();
     void dispenseGumball();
+    void doFill(std::uint32_t num);
+    bool checkSoldOut() const { return (m_GumballCount > 0 ? false : true); }
 
-    bool checkSoldOut() const
-    {
-        return (m_GumballCount > 0 ? false : true);
-    }
-
-    void setState(const std::shared_ptr<State> &StatePtr)
-    {
-        m_StatePtr = StatePtr;
-    }
-
-    std::shared_ptr<State> getSoldOutStatePtr() { return m_SoldOutStatePtr; }
-    std::shared_ptr<State> getNoQuarterStatePtr() { return m_NoQuarterStatePtr; }
-    std::shared_ptr<State> getHasQuarterStatePtr() { return m_HasQuarterStatePtr; }
+    void switchToState(StateId id);
+    bool isValidState(StateId id);
+    std::shared_ptr<State> getState(StateId id);
+    
+    std::string getMachineName() { return m_MachineName; }
+    std::string getCurrentStateHint();
 
 private:
-    std::shared_ptr<State> m_SoldOutStatePtr;
-    std::shared_ptr<State> m_NoQuarterStatePtr;
-    std::shared_ptr<State> m_HasQuarterStatePtr;
-    std::shared_ptr<State> m_StatePtr;
-    unsigned int m_GumballCount = 0;
+    std::string m_MachineName;
+    std::shared_ptr<State> m_SoldOutState;
+    std::shared_ptr<State> m_NoQuarterState;
+    std::shared_ptr<State> m_HasQuarterState;
+    std::shared_ptr<State> m_CurrentState;
+    std::uint32_t m_GumballCount;
 };
 
 #endif
