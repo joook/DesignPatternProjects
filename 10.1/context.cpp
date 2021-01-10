@@ -1,46 +1,139 @@
 #include <iostream>
-#include <memory>
+
 #include "context.h"
 #include "state.h"
 
-using namespace std;
-
-GumballMachine::GumballMachine()
-: m_StatePtr(SoldOutStatePtr)
-, m_GumballCount(0)
+GumballMachine::GumballMachine(const std::string& name)
+    : m_MachineName(name)
+    , m_SoldOutState(std::make_shared<SoldOutState>())
+    , m_NoQuarterState(std::make_shared<NoQuarterState>())
+    , m_HasQuarterState(std::make_shared<HasQuarterState>())
+    , m_CurrentState(m_SoldOutState)
+    , m_GumballCount(0)
 {
 }
 
 void GumballMachine::insertQuarter()
 {
-    m_StatePtr->insertQuarter(this);
+    m_CurrentState->onInsertQuarterEvent(this);
 }
 
 void GumballMachine::ejectQuarter()
 {
-    m_StatePtr->ejectQuarter(this);
+    m_CurrentState->onEjectQuarterEvent(this);
 }
 
 void GumballMachine::turnCrank()
 {
-    m_StatePtr->turnCrank(this);
+    m_CurrentState->onTurnCrankEvent(this);
 }
 
-void GumballMachine::fill(unsigned int Num)
+void GumballMachine::fill(std::uint32_t num)
 {
-    m_GumballCount += Num;
-    if(m_GumballCount > 0)
-    {
-        m_StatePtr->fill(this);
-    }
-    else
-    {
-    }
+    m_CurrentState->onFillEvent(this, num);
+}
+
+void GumballMachine::notifyInsertQuarterFailed()
+{
+    std::cout << getMachineName() << ": " << getCurrentStateHint();
+    std::cout << ", can not insert." << std::endl;
+}
+
+void GumballMachine::notifyInsertQuarterDone()
+{
+    std::cout << getMachineName() << ": " << getCurrentStateHint();
+    std::cout << ", you inserted a quarter." << std::endl;
+}
+
+void GumballMachine::notifyEjectQuarterFailed()
+{
+    std::cout << getMachineName() << ": " << getCurrentStateHint();
+    std::cout << ", can not eject." << std::endl;
+}
+
+void GumballMachine::notifyEjectQuarterDone()
+{
+    std::cout << getMachineName() << ": " << getCurrentStateHint();
+    std::cout << ", you ejected a quarter." << std::endl;
+}
+
+void GumballMachine::notifyTurnCrankFailed()
+{
+    std::cout << getMachineName() << ": " << getCurrentStateHint();
+    std::cout << ", can not turn crank." << std::endl;
 }
 
 void GumballMachine::dispenseGumball()
 {
-    cout << "A gumball rolled out!" << endl;
     m_GumballCount--;
+    std::cout << getMachineName() << ": " << getCurrentStateHint();
+    std::cout << ", crank turned, A gumball rolled out!" << std::endl;
 }
+
+void GumballMachine::doFill(std::uint32_t num)
+{
+    m_GumballCount += num;
+    std::cout << getMachineName() << ": " << getCurrentStateHint();
+    std::cout << ", gumball machine filled with " << num << " gumball(s)." << std::endl;
+}
+
+void GumballMachine::switchToState(StateId id)
+{
+    if ((isValidState(id))
+        && (m_CurrentState->isValidSwitch(id)))
+    {
+        m_CurrentState->onExit(this);
+        m_CurrentState = getState(id);
+        m_CurrentState->onEnter(this);
+    }
+    else
+    {
+        // do nothing
+    }
+}
+
+bool GumballMachine::isValidState(StateId id)
+{
+    if ((id == StateId::SOLD_OUT_STATE)
+        || (id == StateId::NO_QUARTER_STATE)
+        || (id == StateId::HAS_QUARTER_STATE))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+std::shared_ptr<State> GumballMachine::getState(StateId id)
+{
+    std::shared_ptr<State> state{nullptr};
+    
+    if (id == StateId::SOLD_OUT_STATE)
+    {
+        state = m_SoldOutState;
+    }
+    else if (id == StateId::NO_QUARTER_STATE)
+    {
+        state = m_NoQuarterState;
+    }
+    else if (id == StateId::HAS_QUARTER_STATE)
+    {
+        state = m_HasQuarterState;
+    }
+    else
+    {
+        // throw excption
+    }
+    
+    return state;
+}
+
+std::string GumballMachine::getCurrentStateHint()
+{
+    return "current state is <"+m_CurrentState->getStateName()+">";
+}
+
+
 
