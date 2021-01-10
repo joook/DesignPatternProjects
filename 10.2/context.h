@@ -13,6 +13,10 @@ class GumballMachine
 public:
     GumballMachine(const std::string& name);
     ~GumballMachine() = default;
+    GumballMachine(const GumballMachine&) = delete;
+    GumballMachine& operator=(const GumballMachine&) = delete;
+    GumballMachine(GumballMachine&&) = delete;
+    GumballMachine&& operator=(const GumballMachine&&) = delete;
 
 public:
     // for user to call

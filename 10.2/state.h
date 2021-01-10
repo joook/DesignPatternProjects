@@ -7,7 +7,6 @@
 #include "common_types.h"
 
 class GumballMachine;
-class Event;
 
 class State // did not consider about copy control
 {
@@ -20,6 +19,10 @@ public:
     }
 
     virtual ~State() = default;
+    State(const State&) = delete;
+    State& operator=(const State&) = delete;
+    State(State&&) = delete;
+    State&& operator=(const State&&) = delete;
 
     virtual void onEnter() const = 0;
     virtual bool isValidSwitch(StateId id) const = 0;

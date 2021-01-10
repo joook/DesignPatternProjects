@@ -20,6 +20,10 @@ public:
     }
 
     virtual ~State() = default;
+    State(const State&) = delete;
+    State& operator=(const State&) = delete;
+    State(State&&) = delete;
+    State&& operator=(const State&&) = delete;
 
     virtual void onEnter() const = 0;
     virtual void onEvent(const std::shared_ptr<Event>& event) const = 0;

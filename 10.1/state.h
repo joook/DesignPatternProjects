@@ -7,9 +7,8 @@
 #include "common_types.h"
 
 class GumballMachine;
-class Event;
 
-class State // did not consider about copy control
+class State
 {
 public:
     State(StateId id, const std::string& name)
@@ -19,6 +18,10 @@ public:
     }
 
     virtual ~State() = default;
+    State(const State&) = delete;
+    State& operator=(const State&) = delete;
+    State(State&&) = delete;
+    State&& operator=(const State&&) = delete;
 
     virtual void onEnter(GumballMachine* const machine) const = 0;
     virtual bool isValidSwitch(StateId id) const = 0;

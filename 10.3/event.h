@@ -9,6 +9,10 @@ public:
     Event(EventId id);
     Event(EventId id, void* data);
     ~Event() = default;
+    Event(const Event&) = delete;
+    Event& operator=(const Event&) = delete;
+    Event(Event&&) = delete;
+    Event&& operator=(const Event&&) = delete;
 
 public:
     EventId m_Id;
