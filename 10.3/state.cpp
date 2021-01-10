@@ -1,8 +1,10 @@
-#include <iostream>
-#include <memory>
 #include "state.h"
 #include "context.h"
 #include "event.h"
+
+void SoldOutState::onEnter() const
+{
+}
 
 void SoldOutState::onEvent(const std::shared_ptr<Event>& event) const
 {
@@ -10,24 +12,22 @@ void SoldOutState::onEvent(const std::shared_ptr<Event>& event) const
     {
         if (event->m_Id == EventId::INSERT_QUARTER)
         {
-            std::cout << m_Machine->getMachineName() << ": Gumball sold out, can not insert." << std::endl;
+            getContext()->notifyInsertQuarterFailed();
         }
         else if (event->m_Id == EventId::EJECT_QUARTER)
         {
-            std::cout << m_Machine->getMachineName() << ": Gumball sold out, can not eject." << std::endl;
+            getContext()->notifyEjectQuarterFailed();
         }
         else if (event->m_Id == EventId::TURN_CRANK)
         {
-            std::cout << m_Machine->getMachineName() << ": Gumball sold out, can not turn crank." << std::endl;
+            getContext()->notifyTurnCrankFailed();
         }
         else if (event->m_Id == EventId::FILL)
         {
             std::uint32_t* data = (std::uint32_t*)(event->m_Data);
-            m_Machine->doFill(*data);
-            std::cout << m_Machine->getMachineName() << ": Gumball machine filled with " << *data;
-            std::cout << ((*data > 1) ? " gumballs." : " gumball.") << std::endl;
+            getContext()->doFill(*data);
             
-            m_Machine->switchToNoQuarterState();
+            getContext()->switchToState(StateId::NO_QUARTER_STATE);
         }
         else
         {
@@ -39,11 +39,30 @@ void SoldOutState::onEvent(const std::shared_ptr<Event>& event) const
     }
 }
 
-void SoldOutState::onEnter() const
+bool SoldOutState::isValidSwitch(StateId id) const
 {
+    bool returnValue = true;
+    
+    if (id == StateId::NO_QUARTER_STATE)
+    {
+        returnValue = true;
+    }
+    else
+    {
+        returnValue = false;
+    }
+    
+    return returnValue;
 }
 
 void SoldOutState::onExit() const
+{
+}
+
+
+
+
+void NoQuarterState::onEnter() const
 {
 }
 
@@ -53,24 +72,22 @@ void NoQuarterState::onEvent(const std::shared_ptr<Event>& event) const
     {
         if (event->m_Id == EventId::INSERT_QUARTER)
         {
-            std::cout << m_Machine->getMachineName() << ": You inserted a quarter." << std::endl;
+            getContext()->notifyInsertQuarterDone();
             
-            m_Machine->switchToHasQuarterState();
+            getContext()->switchToState(StateId::HAS_QUARTER_STATE);
         }
         else if (event->m_Id == EventId::EJECT_QUARTER)
         {
-            std::cout << m_Machine->getMachineName() << ": No quarter inserted, can not eject." << std::endl;
+            getContext()->notifyEjectQuarterFailed();
         }
         else if (event->m_Id == EventId::TURN_CRANK)
         {
-            std::cout << m_Machine->getMachineName() << ": No quarter inserted, can not turn crank." << std::endl;
+            getContext()->notifyTurnCrankFailed();
         }
         else if (event->m_Id == EventId::FILL)
         {
             std::uint32_t* data = (std::uint32_t*)(event->m_Data);
-            m_Machine->doFill(*data);
-            std::cout << m_Machine->getMachineName() << ": Gumball machine filled with " << *data;
-            std::cout << ((*data > 1) ? " gumballs." : " gumball.") << std::endl;
+            getContext()->doFill(*data);
         }
         else
         {
@@ -82,11 +99,30 @@ void NoQuarterState::onEvent(const std::shared_ptr<Event>& event) const
     }
 }
 
-void NoQuarterState::onEnter() const
+bool NoQuarterState::isValidSwitch(StateId id) const
 {
+    bool returnValue = true;
+    
+    if (id == StateId::HAS_QUARTER_STATE)
+    {
+        returnValue = true;
+    }
+    else
+    {
+        returnValue = false;
+    }
+    
+    return returnValue;
 }
 
 void NoQuarterState::onExit() const
+{
+}
+
+
+
+
+void HasQuarterState::onEnter() const
 {
 }
 
@@ -96,36 +132,31 @@ void HasQuarterState::onEvent(const std::shared_ptr<Event>& event) const
     {
         if (event->m_Id == EventId::INSERT_QUARTER)
         {
-            std::cout << m_Machine->getMachineName() << ": Quarter already inserted." << std::endl;
+            getContext()->notifyInsertQuarterFailed();
         }
         else if (event->m_Id == EventId::EJECT_QUARTER)
         {
-            std::cout << m_Machine->getMachineName() << ": Quarter ejected." << std::endl;
+            getContext()->notifyEjectQuarterDone();
             
-            m_Machine->switchToNoQuarterState();
+            getContext()->switchToState(StateId::NO_QUARTER_STATE);
         }
         else if (event->m_Id == EventId::TURN_CRANK)
         {
-            std::cout << m_Machine->getMachineName() << ": Crank turned." << std::endl;
+            getContext()->dispenseGumball();
             
-            m_Machine->dispenseGumball();
-            std::cout << m_Machine->getMachineName() << ": A gumball rolled out!" << std::endl;
-            
-            if(m_Machine->checkSoldOut() == true)
+            if(getContext()->checkSoldOut() == true)
             {
-                m_Machine->switchToSoldOutState();
+                getContext()->switchToState(StateId::SOLD_OUT_STATE);
             }
             else
             {
-                m_Machine->switchToNoQuarterState();
+                getContext()->switchToState(StateId::NO_QUARTER_STATE);
             }
         }
         else if (event->m_Id == EventId::FILL)
         {
             std::uint32_t* data = (std::uint32_t*)(event->m_Data);
-            m_Machine->doFill(*data);
-            std::cout << m_Machine->getMachineName() << ": Gumball machine filled with " << *data;
-            std::cout << ((*data > 1) ? " gumballs." : " gumball.") << std::endl;
+            getContext()->doFill(*data);
         }
         else
         {
@@ -137,8 +168,21 @@ void HasQuarterState::onEvent(const std::shared_ptr<Event>& event) const
     }
 }
 
-void HasQuarterState::onEnter() const
+bool HasQuarterState::isValidSwitch(StateId id) const
 {
+    bool returnValue = true;
+    
+    if ((id == StateId::SOLD_OUT_STATE)
+        || (id == StateId::NO_QUARTER_STATE))
+    {
+        returnValue = true;
+    }
+    else
+    {
+        returnValue = false;
+    }
+    
+    return returnValue;
 }
 
 void HasQuarterState::onExit() const

@@ -4,6 +4,8 @@
 #include <memory>
 #include <string>
 
+#include "common_types.h"
+
 class State;
 
 class GumballMachine
@@ -20,19 +22,21 @@ public:
     void fill(std::uint32_t num);
 
     // for states to call
+    void notifyInsertQuarterFailed();
+    void notifyInsertQuarterDone();
+    void notifyEjectQuarterFailed();
+    void notifyEjectQuarterDone();
+    void notifyTurnCrankFailed();
     void dispenseGumball();
     void doFill(std::uint32_t num);
+    bool checkSoldOut() const { return (m_GumballCount > 0 ? false : true); }
 
-    bool checkSoldOut() const
-    {
-        return (m_GumballCount > 0 ? false : true);
-    }
-
-    void switchToSoldOutState();
-    void switchToNoQuarterState();
-    void switchToHasQuarterState();
+    void switchToState(StateId id);
+    bool isValidState(StateId id);
+    std::shared_ptr<State> getState(StateId id);
     
     std::string getMachineName() { return m_MachineName; }
+    std::string getCurrentStateHint();
 
 private:
     std::string m_MachineName;
